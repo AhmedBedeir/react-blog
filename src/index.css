@@ -11,3 +11,6 @@
 [data-theme="light"] {
   @apply bg-gray-50 text-gray-900;
 }
+.bg-card {
+  @apply bg-white dark:bg-gray-800;
+}
