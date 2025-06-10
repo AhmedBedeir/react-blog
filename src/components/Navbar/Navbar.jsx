@@ -1,13 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/CreateAuthContext";
 import Logo from "./Logo";
 import { containerStyle } from "../../constants";
 import ThemeToggle from "./ThemeToggle";
 import MenuButton from "./MenuButton";
 import { Link } from "react-router";
+import LoginBtn from "./LoginBtn";
+import RegisterBtn from "./RegisterBtn";
+import ProfileBtn from "./ProfileBtn";
 
 const Navbar = () => {
+  const { userData, isAuthenticated, logout } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
   const [isDark, setIsDark] = useState(
     localStorage.getItem("theme") === "dark"
   );
@@ -95,64 +101,38 @@ const Navbar = () => {
             <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
 
             {/* CTA Buttons */}
-            <Link
-              to="/login"
-              className={`group relative px-6 py-2.5 border rounded-xl font-medium active:scale-95 transition-all duration-200 hover:shadow-md flex items-center space-x-2 ${
-                isDark
-                  ? "border-blue-500 text-blue-400 hover:bg-blue-900/20 hover:shadow-blue-500/20"
-                  : "border-blue-500 text-blue-600 hover:bg-blue-50 hover:shadow-blue-500/20"
-              }`}
-            >
-              <span>Login</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
+            {isAuthenticated() ? (
+              <ProfileBtn userData={userData} logout={logout} />
+            ) : (
+              <>
+                <LoginBtn
+                  isDark={isDark}
+                  styles="group relative px-6 py-2.5 border rounded-xl font-medium active:scale-95 transition-all duration-200 hover:shadow-md flex items-center space-x-2"
                 />
-              </svg>
-            </Link>
-
-            <Link
-              to="/register"
-              className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:from-blue-700 hover:to-purple-700 active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-blue-500/25 flex items-center space-x-2"
-            >
-              <span>Sign Up</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4 group-hover:rotate-12 transition-transform"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                <RegisterBtn
+                  isDark={isDark}
+                  styles="group relative px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:from-blue-700 hover:to-purple-700 active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-blue-500/25 flex items-center space-x-2"
                 />
-              </svg>
-            </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile controls (menu button and toggle theme button)*/}
+
           <div className="md:hidden flex items-center space-x-2">
             {/* Mobile Theme Toggle */}
             <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
 
             {/* Mobile menu button */}
-            <MenuButton
-              isDark={isDark}
-              isMenuOpen={isMenuOpen}
-              toggleMenu={toggleMenu}
-            />
+            {isAuthenticated() ? (
+              <ProfileBtn userData={userData} logout={logout} />
+            ) : (
+              <MenuButton
+                isDark={isDark}
+                isMenuOpen={isMenuOpen}
+                toggleMenu={toggleMenu}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -201,51 +181,17 @@ const Navbar = () => {
 
             {/* Mobile Buttons */}
             <div className="flex flex-col space-y-3 pt-2">
-              <Link
-                to="/login"
-                className={`w-full px-6 py-3 border rounded-xl font-medium active:scale-98 transition-all duration-200 flex items-center justify-center space-x-2 ${
-                  isDark
-                    ? "border-blue-500 text-blue-400 hover:bg-blue-900/20"
-                    : "border-blue-500 text-blue-600 hover:bg-blue-50"
-                }`}
-              >
-                <span>Login</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
-                  />
-                </svg>
-              </Link>
+              <LoginBtn
+                isDark={isDark}
+                styles={`w-full px-6 py-3 border rounded-xl font-medium active:scale-98 transition-all duration-200 shadow-md flex items-center justify-center space-x-2`}
+                toggleMenu={() => setIsMenuOpen(false)}
+              />
 
-              <Link
-                to="/register"
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:from-blue-700 hover:to-purple-700 active:scale-98 transition-all duration-200 shadow-md flex items-center justify-center space-x-2"
-              >
-                <span>Sign Up</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
-                  />
-                </svg>
-              </Link>
+              <RegisterBtn
+                isDark={isDark}
+                styles={`w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:from-blue-700 hover:to-purple-700 active:scale-98 transition-all duration-200 shadow-md flex items-center justify-center space-x-2`}
+                toggleMenu={() => setIsMenuOpen(false)}
+              />
             </div>
           </div>
         </div>
