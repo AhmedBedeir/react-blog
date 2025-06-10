@@ -1,3 +1,13 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+[data-theme="dark"] {
+  @apply bg-gray-900 text-gray-100;
+}
+[data-theme="light"] {
+  @apply bg-gray-50 text-gray-900;
+}

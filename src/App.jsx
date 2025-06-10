@@ -1,7 +1,12 @@
+import Navbar from "./components/Navbar/Navbar";
+import { containerStyle } from "./constants";
 function App() {
   return (
-    <div className="App">
-      <h1 className="bg-primary p-4 font-bold text-center">Welcome to My Blog App</h1>
+    <div className="transition-colors duration-200">
+      <Navbar />
+      <div className={`${containerStyle} mt-28`}>
+        <h1>Welcome to My App</h1>
+      </div>
     </div>
   );
 }
