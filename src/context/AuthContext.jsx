@@ -4,6 +4,35 @@ import { useNavigate } from "react-router";
 import api from "../api/axios";
 import { toast } from "react-toastify";
 
+const customToast = (message, action) => {
+  toast.info(
+    <div>
+      <p>{message}</p>
+      <div className="mt-2 flex gap-2 justify-center">
+        <button
+          className="btn btn-sm btn-error"
+          onClick={() => {
+            toast.dismiss();
+            action();
+          }}
+        >
+          Yes
+        </button>
+        <button className="btn btn-sm" onClick={() => toast.dismiss()}>
+          No
+        </button>
+      </div>
+    </div>,
+    {
+      autoClose: false,
+      closeOnClick: false,
+      draggable: false,
+      position: "top-right",
+      className: "custom-toast",
+    }
+  );
+};
+
 function AuthContextProvider({ children }) {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(
@@ -36,8 +65,7 @@ function AuthContextProvider({ children }) {
       toast.success("Login successful!");
       navigate("/", { replace: true });
     } catch (err) {
-      console.log(err);
-      setError(err.response ? err.response.data : "Login failed");
+      handleError(err);
     } finally {
       setLoading(false);
     }
@@ -55,6 +83,45 @@ function AuthContextProvider({ children }) {
     });
   };
 
+  const register = async ({ fullName, email, password }) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await api.post("/register", {
+        fullName,
+        email,
+        password,
+      });
+      const { user, accessToken } = response.data;
+
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", accessToken);
+
+      setUserData(user);
+      setToken(accessToken);
+      toast.success("Registration successful!");
+      navigate("/", { replace: true });
+    } catch (err) {
+      handleError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleError = (error) => {
+    if (error.response) {
+      setError(error.response.data);
+    } else if (error.request) {
+      setError("Network error, please try again later.");
+    } else {
+      setError("An unexpected error occurred.");
+    }
+  };
+
+  const clearError = () => {
+    setError(null);
+  };
+
   const contextValue = {
     userData,
     token,
@@ -63,42 +130,12 @@ function AuthContextProvider({ children }) {
     isAuthenticated,
     login,
     logout,
+    register,
+    clearError,
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 }
-
-// need to make custom toast for confirmation messages with action buttons
-// Are you sure you want to logout?
-// Yes, No
-const customToast = (message, action) => {
-  toast.info(
-    <div>
-      <p>{message}</p>
-      <div className="mt-2 flex gap-2 justify-center">
-        <button
-          className="btn btn-sm btn-error"
-          onClick={() => {
-            toast.dismiss();
-            action();
-          }}
-        >
-          Yes
-        </button>
-        <button className="btn btn-sm" onClick={() => toast.dismiss()}>
-          No
-        </button>
-      </div>
-    </div>,
-    {
-      autoClose: false,
-      closeOnClick: false,
-      draggable: false,
-      position: "top-center",
-      className: "custom-toast",
-    }
-  );
-};
 
 export default AuthContextProvider;

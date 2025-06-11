@@ -13,7 +13,10 @@ function ProfileBtn({ userData, logout }) {
             <img src="https://avatar.iran.liara.run/public/30" />
           </div>
         </div>
-        <p className={`text-sm font-medium `}>{userData.name}</p>
+        <p className={`text-sm font-medium `}>
+          {userData?.fullName.slice(0, 10)}
+          {userData?.fullName.length > 10 ? "..." : ""}
+        </p>
       </div>
       <ul
         tabIndex={0}
@@ -21,7 +24,7 @@ function ProfileBtn({ userData, logout }) {
       >
         <li className="pointer-events-none hover:bg-transparent cursor-default border-b-1 border-gray-200/50 mb-4">
           <div className="flex flex-col items-start gap-1">
-            <p>{userData.name}</p>
+            <p>{userData.fullName}</p>
             <p>{userData.email}</p>
           </div>
         </li>
