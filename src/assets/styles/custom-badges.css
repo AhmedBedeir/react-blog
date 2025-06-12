@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Badge Utility Classes */
+.badge-custom {
+  @apply rounded-full px-3 py-1 text-xs font-semibold;
+}
+
+/* Blue Badge */
+.badge-blue {
+  @apply bg-blue-100 text-blue-700 hover:bg-blue-200;
+}
+
+[data-theme="dark"] .badge-blue {
+  @apply bg-blue-900/30 text-blue-300 hover:bg-blue-900/50;
+}
+
+/* Purple Badge */
+.badge-purple {
+  @apply bg-purple-100 text-purple-700 hover:bg-purple-200;
+}
+
+[data-theme="dark"] .badge-purple {
+  @apply bg-purple-900/30 text-purple-300 hover:bg-purple-900/50;
+}
+
+/* Green Badge */
+.badge-green {
+  @apply bg-green-100 text-green-700 hover:bg-green-200;
+}
+
+[data-theme="dark"] .badge-green {
+  @apply bg-green-900/30 text-green-300 hover:bg-green-900/50;
+}
+
+/* Red Badge */
+.badge-red {
+  @apply bg-red-100 text-red-700 hover:bg-red-200;
+}
+
+[data-theme="dark"] .badge-red {
+  @apply bg-red-900/30 text-red-300 hover:bg-red-900/50;
+}
+
+/* Yellow Badge */
+.badge-yellow {
+  @apply bg-yellow-100 text-yellow-700 hover:bg-yellow-200;
+}
+
+[data-theme="dark"] .badge-yellow {
+  @apply bg-yellow-900/30 text-yellow-300 hover:bg-yellow-900/50;
+}
+
+/* Indigo Badge */
+.badge-indigo {
+  @apply bg-indigo-100 text-indigo-700 hover:bg-indigo-200;
+}
+
+[data-theme="dark"] .badge-indigo {
+  @apply bg-indigo-900/30 text-indigo-300 hover:bg-indigo-900/50;
+}
+
+/* Pink Badge */
+.badge-pink {
+  @apply bg-pink-100 text-pink-700 hover:bg-pink-200;
+}
+
+[data-theme="dark"] .badge-pink {
+  @apply bg-pink-900/30 text-pink-300 hover:bg-pink-900/50;
+}
+
+/* Gray Badge */
+.badge-gray {
+  @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+}
+
+[data-theme="dark"] .badge-gray {
+  @apply bg-gray-700/50 text-gray-300 hover:bg-gray-600/50;
+}

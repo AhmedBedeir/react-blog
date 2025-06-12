@@ -1,0 +1,152 @@
+import avatarImg from "../../assets/images/avatar.png";
+import blogImg from "../../assets/images/defaultBlogImg.jpg";
+// import { badgeStyles } from "../../constants";
+
+function BlogCard() {
+  return (
+    <div className="relative flex w-100 flex-col rounded-xl bg-card bg-clip-border  shadow-md">
+      {/* blog img */}
+      <div className="relative mx-4 -mt-6 h-50 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+        <img
+          src={blogImg}
+          alt="Blog cover"
+          className="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-120"
+        />
+      </div>
+      {/* author blog */}
+      <div className="flex items-center justify-between px-6 pt-6">
+        <div className="flex items-center">
+          <div className="relative h-12 w-12 mx-auto rounded-full shadow-md">
+            <img
+              src={avatarImg}
+              alt="Author"
+              className="h-12 w-12 rounded-full border-2 border-white shadow-md object-cover"
+            />
+            <div className="absolute bottom-0 right-0 text-blue-500 bg-card rounded-full shadow-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <span className="ml-3 font-sans text-sm font-semibold text-blue-gray-900 antialiased">
+            John Doe
+            <br />
+            <span className="text-xs font-normal text-blue-gray-600">
+              Software Engineer
+            </span>
+          </span>
+        </div>
+        <span className="font-sans text-xs font-normal text-blue-gray-600 antialiased">
+          20 Oct 2023
+        </span>
+      </div>
+      {/* blog content */}
+      <div className="p-6">
+        <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam,
+          ullam.
+        </h5>
+        <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc felis
+          ligula.
+        </p>
+        {/* tags */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          <span className=" badge-custom badge-pink">#technology</span>
+          <span className=" badge-custom badge-blue">#technology</span>
+          <span className=" badge-custom badge-purple">#technology</span>
+          <span className=" badge-custom badge-green">#technology</span>
+          <span className=" badge-custom badge-red">#technology</span>
+          <span className=" badge-custom badge-yellow">#technology</span>
+        </div>
+      </div>
+      {/* blog action */}
+      <div className="p-6 pt-0 flex items-center justify-between">
+        <button
+          data-ripple-light="true"
+          type="button"
+          className="inline-flex items-center gap-2 rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        >
+          Read More
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-4"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+            />
+          </svg>
+        </button>
+        <div>
+          <button className="btn btn-circle btn-soft btn-info btn-sm ml-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+              />
+            </svg>
+          </button>
+          <button className="btn btn-circle btn-soft btn-info btn-sm ml-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+              />
+            </svg>
+          </button>
+          <button className="btn btn-circle btn-outline btn-error btn-sm ml-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default BlogCard;

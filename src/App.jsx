@@ -5,6 +5,7 @@ import PageNotFound from "./components/PageNotFound";
 import { ToastContainer } from "react-toastify";
 import AuthForm from "./pages/auth/AuthForm";
 import ProtectAuthPage from "./utils/ProtectAuthPage";
+import Home from "./pages/Home";
 
 function App() {
   console.log("App component rendered");
@@ -14,7 +15,7 @@ function App() {
       <Navbar />
       <div className={`${containerStyle} mt-28`}>
         <Routes>
-          <Route path="/" element={<h1 className="text-2xl">Home Page</h1>} />
+          <Route path="/" element={<Home />} />
           <Route
             path="/login"
             element={
