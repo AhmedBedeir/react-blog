@@ -18,3 +18,26 @@
 .text-base {
   @apply text-gray-900 dark:text-gray-100;
 }
+
+.w-md-editor,
+.w-md-editor-toolbar {
+  @apply !bg-white dark:!bg-gray-800 !text-gray-900 dark:!text-gray-100;
+}
+.w-md-editor{
+@apply !shadow-lg rounded-full;
+
+}
+.w-md-editor-content, .w-md-editor-toolbar {
+  @apply !border !border-primary;
+
+}
+
+
+/* .w-md-editor {
+  border: 1px solid red !important;
+  box-shadow: none;
+} */
+
+/* .wmde-markdown {
+  border: 1px solid red !important;
+} */

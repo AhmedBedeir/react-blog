@@ -9,6 +9,29 @@ const badgeStyles = [
   "badge-red",
   "badge-yellow",
 ];
+
+function estimateReadTime(content) {
+  const wordsPerMinute = 200;
+  const wordCount = content.trim().split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+  return `${minutes} min read`;
+}
+
+const Categories = [
+  "JavaScript",
+  "CSS",
+  "React",
+  "Node.js",
+  "Python",
+  "Design",
+  "Web Development",
+  "Mobile",
+  "DevOps",
+  "Database",
+  "AI/ML",
+  "Other",
+];
+
 const handleResponseError = (error) => {
   if (error.response) {
     return error.response.data;
@@ -18,4 +41,10 @@ const handleResponseError = (error) => {
     return "An unexpected error occurred.";
   }
 };
-export { containerStyle, badgeStyles, handleResponseError };
+export {
+  containerStyle,
+  badgeStyles,
+  handleResponseError,
+  Categories,
+  estimateReadTime,
+};

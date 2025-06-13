@@ -8,6 +8,7 @@ import { Link } from "react-router";
 import LoginBtn from "./LoginBtn";
 import RegisterBtn from "./RegisterBtn";
 import ProfileBtn from "./ProfileBtn";
+import CreatePostBtn from "./CreatePostBtn";
 
 const Navbar = () => {
   const { userData, isAuthenticated, logout } = useContext(AuthContext);
@@ -102,7 +103,10 @@ const Navbar = () => {
 
             {/* CTA Buttons */}
             {isAuthenticated() ? (
-              <ProfileBtn userData={userData} logout={logout} />
+              <>
+                <CreatePostBtn />
+                <ProfileBtn userData={userData} logout={logout} />
+              </>
             ) : (
               <>
                 <LoginBtn

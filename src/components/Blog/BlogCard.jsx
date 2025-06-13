@@ -86,7 +86,7 @@ function BlogCard({
             </div>
           </div>
           <span className="ml-3 font-sans text-sm font-semibold text-blue-gray-900 antialiased">
-            {author.name}
+            {author.fullName}
             <br />
             <span className="text-xs font-normal text-blue-gray-600">
               Software Engineer

@@ -1,5 +1,6 @@
 import React from "react";
 import avatar2 from "../../assets/images/avatar2.png";
+import CreatePostBtn from "./CreatePostBtn";
 
 function ProfileBtn({ userData, logout }) {
   return (
@@ -21,15 +22,17 @@ function ProfileBtn({ userData, logout }) {
       </div>
       <ul
         tabIndex={0}
-        className="menu dropdown-content bg-card rounded-box z-1 mt-4 w-52 p-2 shadow-xl"
+        className="menu dropdown-content bg-card gap-4 rounded-box z-1 mt-4 w-52 p-2 shadow-xl"
       >
-        <li className="pointer-events-none hover:bg-transparent cursor-default border-b-1 border-gray-200/50 mb-4">
+        <li className="pointer-events-none hover:bg-transparent cursor-default border-b-1 border-gray-200/50">
           <div className="flex flex-col items-start gap-1">
             <p>{userData.fullName}</p>
             <p>{userData.email}</p>
           </div>
         </li>
-
+        <li className="md:hidden">
+          <CreatePostBtn />
+        </li>
         <li>
           <button
             className="btn btn-outline btn-error rounded-xl px-6 py-5 font-medium

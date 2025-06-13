@@ -6,6 +6,8 @@ import { ToastContainer } from "react-toastify";
 import AuthForm from "./pages/auth/AuthForm";
 import ProtectAuthPage from "./utils/ProtectAuthPage";
 import Home from "./pages/Home";
+import CreatePost from "./pages/blog/CreatePost";
+import ProtectPostsCrud from "./utils/ProtectPostsCrud";
 
 function App() {
   console.log("App component rendered");
@@ -30,6 +32,14 @@ function App() {
               <ProtectAuthPage>
                 <AuthForm mode={"register"} />
               </ProtectAuthPage>
+            }
+          />
+          <Route
+            path="/post/create"
+            element={
+              <ProtectPostsCrud>
+                <CreatePost />
+              </ProtectPostsCrud>
             }
           />
 
