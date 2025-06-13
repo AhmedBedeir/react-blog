@@ -1,14 +1,60 @@
 import avatarImg from "../../assets/images/avatar.png";
 import blogImg from "../../assets/images/defaultBlogImg.jpg";
-// import { badgeStyles } from "../../constants";
+import { badgeStyles } from "../../constants";
+import { useNavigate } from "react-router";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/CreateAuthContext";
+import apiProtected from "../../api/apiProtected";
+import { handleResponseError } from "../../constants";
+import { toast } from "react-toastify";
 
-function BlogCard() {
+function BlogCard({
+  id,
+  title,
+  content,
+  author,
+  date,
+  tags,
+  postImg = blogImg,
+  likes: initialLikes,
+}) {
+  const navigate = useNavigate();
+  const { userData, isAuthenticated } = useContext(AuthContext);
+  const [likes, setLikes] = useState(initialLikes || []);
+
+  const isLiked = likes.includes(userData?.id) || false;
+  // make optimistic update for likes
+  const toggleLike = async () => {
+    if (!isAuthenticated()) {
+      toast.dismiss();
+      toast.error("Please login to like the post.");
+      return;
+    }
+    const snapshotLikes = likes;
+    const updatedLikes = isLiked
+      ? likes.filter((like) => like !== userData.id)
+      : [...likes, userData.id];
+    setLikes(updatedLikes);
+
+    try {
+      const res = await apiProtected.patch(`/664/posts/${id}`, {
+        likes: updatedLikes,
+      });
+      console.log(res);
+    } catch (error) {
+      // If the API call fails, revert to the previous state
+      setLikes(snapshotLikes);
+      toast.dismiss();
+      toast.error(handleResponseError(error));
+    }
+  };
+
   return (
     <div className="relative flex w-100 flex-col rounded-xl bg-card bg-clip-border  shadow-md">
       {/* blog img */}
       <div className="relative mx-4 -mt-6 h-50 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
         <img
-          src={blogImg}
+          src={postImg}
           alt="Blog cover"
           className="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-120"
         />
@@ -40,7 +86,7 @@ function BlogCard() {
             </div>
           </div>
           <span className="ml-3 font-sans text-sm font-semibold text-blue-gray-900 antialiased">
-            John Doe
+            {author.name}
             <br />
             <span className="text-xs font-normal text-blue-gray-600">
               Software Engineer
@@ -48,27 +94,29 @@ function BlogCard() {
           </span>
         </div>
         <span className="font-sans text-xs font-normal text-blue-gray-600 antialiased">
-          20 Oct 2023
+          {date}
         </span>
       </div>
       {/* blog content */}
       <div className="p-6">
         <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam,
-          ullam.
+          {title}
         </h5>
         <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc felis
-          ligula.
+          {content.length > 75 ? content.substring(0, 75) + "..." : content}
         </p>
         {/* tags */}
         <div className="mt-4 flex flex-wrap gap-2">
-          <span className=" badge-custom badge-pink">#technology</span>
-          <span className=" badge-custom badge-blue">#technology</span>
-          <span className=" badge-custom badge-purple">#technology</span>
-          <span className=" badge-custom badge-green">#technology</span>
-          <span className=" badge-custom badge-red">#technology</span>
-          <span className=" badge-custom badge-yellow">#technology</span>
+          {tags.map((tag, index) => (
+            <span
+              key={index}
+              className={`badge-custom ${
+                badgeStyles[index % badgeStyles.length]
+              }`}
+            >
+              #{tag}
+            </span>
+          ))}
         </div>
       </div>
       {/* blog action */}
@@ -77,6 +125,7 @@ function BlogCard() {
           data-ripple-light="true"
           type="button"
           className="inline-flex items-center gap-2 rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          onClick={() => navigate(`/blog/${id}`)}
         >
           Read More
           <svg
@@ -95,7 +144,11 @@ function BlogCard() {
           </svg>
         </button>
         <div>
-          <button className="btn btn-circle btn-soft btn-info btn-sm ml-2">
+          <button
+            className={`btn  ${isLiked ? "" : "btn-soft"} btn-info btn-sm ml-2`}
+            onClick={toggleLike}
+            aria-label={isLiked ? "Unlike" : "Like"}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -110,6 +163,7 @@ function BlogCard() {
                 d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
               />
             </svg>
+            {likes.length}
           </button>
           <button className="btn btn-circle btn-soft btn-info btn-sm ml-2">
             <svg

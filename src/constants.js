@@ -9,5 +9,13 @@ const badgeStyles = [
   "badge-red",
   "badge-yellow",
 ];
-
-export { containerStyle, badgeStyles };
+const handleResponseError = (error) => {
+  if (error.response) {
+    return error.response.data;
+  } else if (error.request) {
+    return "Network error, please try again later.";
+  } else {
+    return "An unexpected error occurred.";
+  }
+};
+export { containerStyle, badgeStyles, handleResponseError };

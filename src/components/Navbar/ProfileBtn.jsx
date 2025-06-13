@@ -1,4 +1,5 @@
 import React from "react";
+import avatar2 from "../../assets/images/avatar2.png";
 
 function ProfileBtn({ userData, logout }) {
   return (
@@ -10,7 +11,7 @@ function ProfileBtn({ userData, logout }) {
       >
         <div className="avatar">
           <div className="ring-white ring-offset-white w-6 md:w-7 rounded-full ring-1 shadow-md ring-offset-1">
-            <img src="https://avatar.iran.liara.run/public/30" />
+            <img src={avatar2} />
           </div>
         </div>
         <p className={`text-sm font-medium `}>
