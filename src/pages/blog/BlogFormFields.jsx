@@ -10,6 +10,7 @@ export function BlogFormFields({
   onRemoveTag,
   onSubmit,
   isLoading,
+  mode,
 }) {
   const handleAddTag = () => {
     if (newTag.trim() && !formData.tags.includes(newTag.trim())) {
@@ -154,20 +155,10 @@ export function BlogFormFields({
           preview="edit"
         />
 
-        {/* <textarea
-          id="content"
-          name="content"
-          value={formData.content}
-          onChange={onInputChange}
-          rows={12}
-          className="w-full px-4 py-5 textarea textarea-primary"
-          placeholder="Write your blog post content here..."
-          required
-        /> */}
-        <MDEditor.Markdown
+        {/* <MDEditor.Markdown
           source={formData.content}
           className="mt-4 !bg-card p-4 rounded-lg prose"
-        />
+        /> */}
         <div className="mt-2 text-sm">
           Estimated read time: {formData.readTime || "..."}
         </div>
@@ -180,7 +171,7 @@ export function BlogFormFields({
           className="btn px-8 py-6 btn-primary font-semibold rounded-full"
           disabled={isLoading}
         >
-          Create Post
+          {mode === "edit" ? "Update Post" : "Create Post"}
           {isLoading ? (
             <span className="loading loading-dots loading-xl"></span>
           ) : (

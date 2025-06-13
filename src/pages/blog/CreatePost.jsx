@@ -6,12 +6,21 @@ import { useFormData } from "../../hooks/useFormData";
 import apiProtected from "../../api/apiProtected";
 import { toast } from "react-toastify";
 import { handleResponseError } from "../../constants";
-import { useNavigate } from "react-router";
-export default function CreatePost() {
+import { useNavigate, useParams } from "react-router";
+
+export default function CreatePost({ mode = "create" }) {
   const navigate = useNavigate();
   const { userData } = useContext(AuthContext);
-  const { formData, updateFormData, addTag, removeTag, resetFormData } =
-    useFormData();
+  const { postId } = useParams();
+
+  const {
+    formData,
+    updateFormData,
+    addTag,
+    removeTag,
+    resetFormData,
+    loadingPostData,
+  } = useFormData(postId, mode);
   const [newTag, setNewTag] = useState("");
   const [isPreview, setIsPreview] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,19 +37,31 @@ export default function CreatePost() {
       return;
     }
     setIsLoading(true);
-    const blogPost = {
-      ...formData,
-      likes: [],
-      publishDate: new Date().toLocaleDateString(),
-      author: {
-        fullName: userData.fullName,
-        id: userData.id,
-      },
-    };
+    let blogPost;
+    if (mode === "edit" && postId) {
+      blogPost = { ...formData };
+    } else {
+      blogPost = {
+        ...formData,
+        likes: [],
+        publishDate: new Date().toLocaleDateString(),
+        author: {
+          fullName: userData.fullName,
+          id: userData.id,
+        },
+      };
+    }
     try {
-      const response = await apiProtected.post("/664/posts", blogPost);
+      const response =
+        mode === "create"
+          ? await apiProtected.post("/664/posts", blogPost)
+          : await apiProtected.put(`/664/posts/${postId}`, blogPost);
       if (response.status >= 200) {
-        toast.success("Blog post created successfully!");
+        toast.success(
+          mode === "create"
+            ? "Blog post created successfully!"
+            : "Blog post updated successfully!"
+        );
         resetFormData();
         setIsPreview(false);
         navigate(`/`);
@@ -54,6 +75,14 @@ export default function CreatePost() {
     }
   };
 
+  if (mode === "edit" && postId && loadingPostData) {
+    return (
+      <div className="flex items-center justify-center min-h-80">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen py-8 px-4">
       <div className="max-w-4xl mx-auto">
@@ -61,7 +90,7 @@ export default function CreatePost() {
           {/* Header */}
           <div className="bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-4">
             <h1 className="text-2xl font-bold text-white">
-              Create New Blog Post
+              {mode === "edit" ? "Edit Blog Post" : "Create New Blog Post"}
             </h1>
             <p className="text-blue-100 mt-1">
               Share your knowledge with the world
@@ -111,6 +140,7 @@ export default function CreatePost() {
                 onRemoveTag={removeTag}
                 onSubmit={handleSubmit}
                 isLoading={isLoading}
+                mode={mode}
               />
             )}
           </div>

@@ -30,6 +30,10 @@ function BlogList() {
     };
   }, []);
 
+  const handleDelete = (id) => {
+    setPostsData((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  };
+
   return (
     <div className="flex flex-wrap gap-x-4 gap-y-12 justify-center">
       {loading && (
@@ -57,6 +61,7 @@ function BlogList() {
             postImg={post.image}
             likes={post.likes}
             id={post.id}
+            onDelete={handleDelete}
           />
         ))}
     </div>

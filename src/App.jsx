@@ -42,6 +42,14 @@ function App() {
               </ProtectPostsCrud>
             }
           />
+          <Route
+            path="/post/edit/:postId"
+            element={
+              <ProtectPostsCrud>
+                <CreatePost mode={"edit"} />
+              </ProtectPostsCrud>
+            }
+          />
 
           {/* not found route */}
           <Route path="*" element={<PageNotFound />} />
