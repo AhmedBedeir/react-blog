@@ -58,6 +58,10 @@ function BlogCard({
           src={postImg}
           alt="Blog cover"
           className="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-120"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = blogImg;
+          }}
         />
       </div>
       {/* author blog */}

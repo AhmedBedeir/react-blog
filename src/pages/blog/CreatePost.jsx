@@ -20,6 +20,8 @@ export default function CreatePost({ mode = "create" }) {
     removeTag,
     resetFormData,
     loadingPostData,
+    uploadImage,
+    imgUploading,
   } = useFormData(postId, mode);
   const [newTag, setNewTag] = useState("");
   const [isPreview, setIsPreview] = useState(false);
@@ -141,6 +143,8 @@ export default function CreatePost({ mode = "create" }) {
                 onSubmit={handleSubmit}
                 isLoading={isLoading}
                 mode={mode}
+                uploadImage={uploadImage}
+                imgUploading={imgUploading}
               />
             )}
           </div>

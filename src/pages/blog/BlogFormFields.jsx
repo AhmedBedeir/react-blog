@@ -1,6 +1,6 @@
 import { Categories } from "../../constants";
 import MDEditor from "@uiw/react-md-editor";
-
+import { useState } from "react";
 export function BlogFormFields({
   formData,
   newTag,
@@ -11,7 +11,11 @@ export function BlogFormFields({
   onSubmit,
   isLoading,
   mode,
+  uploadImage,
+  imgUploading,
 }) {
+  const [showImgLinkInput, setShowImgLinkInput] = useState(false);
+
   const handleAddTag = () => {
     if (newTag.trim() && !formData.tags.includes(newTag.trim())) {
       onAddTag(newTag.trim());
@@ -63,28 +67,62 @@ export function BlogFormFields({
       </div>
 
       {/* Cover Image */}
-      <div>
-        <label htmlFor="image" className="block text-sm font-medium mb-2">
-          Cover Image URL
-        </label>
-        <input
-          type="url"
-          id="image"
-          name="image"
-          value={formData.image}
-          onChange={onInputChange}
-          className="w-full flex-1 px-4 py-5 input input-primary "
-          placeholder="https://example.com/image.jpg"
-        />
-        {formData.image && (
-          <img
-            src={formData.image}
-            alt="Preview"
-            className="mt-2 w-full h-48 object-cover rounded-lg"
+      {showImgLinkInput ? (
+        <div>
+          <label htmlFor="image" className="block text-sm font-medium mb-2">
+            Cover Image URL
+          </label>
+          <input
+            type="url"
+            id="image"
+            name="image"
+            value={formData.image}
+            onChange={onInputChange}
+            className="w-full flex-1 px-4 py-5 input input-primary "
+            placeholder="https://example.com/image.jpg"
           />
-        )}
-      </div>
+        </div>
+      ) : (
+        <div>
+          <p className="block text-sm font-medium mb-2">Cover Image URL</p>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            onChange={async (e) => {
+              const file = e.target.files[0];
+              if (file) {
+                await uploadImage(file);
+              }
+            }}
+            className="w-full  file-input file-input-primary"
+            placeholder="Upload an image"
+          />
+          {imgUploading && (
+            <div className="flex items-center gap-2 mt-2">
+              <span className="loading loading-spinner loading-md"></span>
+              <span>Uploading image...</span>
+            </div>
+          )}
+        </div>
+      )}
 
+      <button
+        type="button"
+        onClick={() => setShowImgLinkInput(!showImgLinkInput)}
+        className="btn btn-primary btn-outline rounded-full px-4 py-2"
+      >
+        {showImgLinkInput ? "Upload Image" : "Use Image URL"}
+      </button>
+
+      {formData.image && (
+        <img
+          src={formData.image}
+          alt="Preview"
+          className="mt-2 w-full h-48 object-cover rounded-lg"
+        />
+      )}
       {/* Tags */}
       <div>
         <label className="block text-sm font-medium mb-2">Tags</label>

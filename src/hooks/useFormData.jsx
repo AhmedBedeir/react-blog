@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { estimateReadTime, handleResponseError } from "../constants";
 import apiProtected from "../api/apiProtected";
+import api from "../api/axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../context/CreateAuthContext";
@@ -17,6 +18,7 @@ export function useFormData(postId, mode) {
     tags: [],
   });
   const [loadingPostData, setLoadingPostData] = useState(false);
+  const [imgUploading, setImgUploading] = useState(false);
 
   const updateFormData = (e) => {
     const { name, value } = e.target;
@@ -38,6 +40,36 @@ export function useFormData(postId, mode) {
       ...prev,
       tags: prev.tags.filter((tag) => tag !== tagToRemove),
     }));
+  };
+
+  const uploadImage = async (file) => {
+    const newFormData = new FormData();
+    newFormData.append("image", file);
+    setImgUploading(true);
+    try {
+      // Replace with your actual upload endpoint
+      const response = await api.post(
+        "https://api.imgbb.com/1/upload?key=b8df38de2353555c69e09f5c93b5378f",
+        newFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      setFormData((prev) => ({
+        ...prev,
+        image: response.data.data.url,
+      }));
+      return response.data.url;
+    } catch (err) {
+      console.log(err);
+      toast.error("Image upload failed.");
+      return null;
+    } finally {
+      setImgUploading(false);
+    }
   };
 
   const resetFormData = () => {
@@ -98,5 +130,7 @@ export function useFormData(postId, mode) {
     removeTag,
     resetFormData,
     loadingPostData,
+    uploadImage,
+    imgUploading,
   };
 }
