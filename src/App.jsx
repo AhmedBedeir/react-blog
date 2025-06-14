@@ -8,6 +8,7 @@ import ProtectAuthPage from "./utils/ProtectAuthPage";
 import Home from "./pages/Home";
 import CreatePost from "./pages/blog/CreatePost";
 import ProtectPostsCrud from "./utils/ProtectPostsCrud";
+import PostView from "./pages/blog/PostView";
 
 function App() {
   console.log("App component rendered");
@@ -50,6 +51,7 @@ function App() {
               </ProtectPostsCrud>
             }
           />
+          <Route path="/post/:postId" element={<PostView />} />
 
           {/* not found route */}
           <Route path="*" element={<PageNotFound />} />
