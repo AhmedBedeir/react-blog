@@ -1,12 +1,93 @@
-# React + Vite
+# React Blog App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern application built with React, featuring user authentication, markdown editing, and comprehensive post management capabilities.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### User Authentication
+- **User Registration & Login** - Secure authentication system
+- **Protected Routes** - Route protection for authenticated users
 
-## Expanding the ESLint configuration
+### Post Management (CRUD)
+- **Create Posts** - Rich text editor with markdown support
+- **Read Posts** - Clean, responsive post viewing experience
+- **Update Posts** - Edit existing posts with real-time preview
+- **Delete Posts** - Remove posts with confirmation dialogs
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Content Creation
+- **Markdown Editor** - Built-in text editor supporting markdown syntax
+- **Live Preview** - Real-time markdown preview while writing
+- **Syntax Highlighting** - Enhanced code block support in posts
+
+### Social Features
+- **Like/Unlike System** - Interactive post engagement
+
+### Search & Discovery
+- **Post Search** - Full-text search across all posts
+- **Content Filtering** - Filter posts by categories, tags, or authors
+- **Pagination** - Efficient content loading with page navigation
+
+### User Experience
+- **Responsive Design** - Mobile-first approach with TailwindCSS
+- **Modern UI Components** - Clean interface using DaisyUI
+- **Form Validation** - Robust form handling with React Hook Form
+- **Loading States** - Smooth user experience with loading indicators
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React** - Component-based UI library
+- **React Router** - Client-side routing and navigation
+- **TailwindCSS** - Utility-first CSS framework
+- **DaisyUI** - Component library for Tailwind
+
+### State Management & Forms
+- **Context** - Global state management
+- **React Hook Form** - Performant form library with validation
+- **Axios** - HTTP client for API requests
+
+### Development Tools
+- **Vite** - Build tool and development server
+- **ESLint** - Code linting and formatting
+
+
+## 🔧 Key Components
+
+### Authentication System
+- JWT-based authentication
+- Protected route wrapper
+
+### Post Editor
+- Markdown syntax support
+- Real-time preview
+- Image upload capability
+
+### Search & Filter System
+- Debounced search input
+- filter criteria
+- pagination options
+
+## 📱 API Integration
+
+The application integrates with a RESTful API with the following endpoints:
+
+### Authentication
+- `POST /register` - User registration
+- `POST /login` - User login
+
+### Posts
+- `GET /posts` - Fetch posts (with pagination/filtering)
+- `GET /posts/:id` - Fetch single post
+- `POST /posts` - Create new post
+- `PUT /posts/:id` - Update post
+- `DELETE /posts/:id` - Delete post
+
+
+## 🎨 Styling
+
+The application uses a modern design system built with:
+
+- **TailwindCSS** for utility-first styling
+- **DaisyUI** for pre-built component themes
+- **Responsive design** patterns
+- **Dark/light mode** support
