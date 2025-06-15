@@ -5,6 +5,8 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+
+
 [data-theme="dark"] {
   @apply bg-gray-900 text-gray-100;
 }
@@ -29,6 +31,7 @@
 .w-md-editor-content,
 .w-md-editor-toolbar {
   @apply !border !border-primary;
+  color: inherit !important;
 }
 
 /* .w-md-editor {

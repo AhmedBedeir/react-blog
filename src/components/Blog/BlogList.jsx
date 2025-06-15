@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import api from "../../api/axios";
 import { handleResponseError } from "../../constants";
 import AlertError from "../AlertError";
+import { Categories } from "../../constants";
+import NoPostYet from "./NoPostYet";
 
 const POSTS_PER_PAGE = 3; // Change as needed
 
@@ -12,7 +14,7 @@ function BlogList() {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPosts, setTotalPosts] = useState(0);
-
+  const [category, setCategory] = useState("");
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -20,10 +22,10 @@ function BlogList() {
     const getPosts = async () => {
       try {
         const response = await api.get(
-          `/posts?_page=${page}&_limit=${POSTS_PER_PAGE}`,
-          {
-            signal: controller.signal,
-          }
+          `/posts?_page=${page}&_limit=${POSTS_PER_PAGE}${
+            category ? `&category=${encodeURIComponent(category)}` : ""
+          }`,
+          { signal: controller.signal }
         );
         setPostsData(response.data);
         console.log(response);
@@ -39,7 +41,7 @@ function BlogList() {
     return () => {
       controller.abort();
     };
-  }, [page]);
+  }, [page, category]);
 
   const handleDelete = (id) => {
     setPostsData((prevPosts) => prevPosts.filter((post) => post.id !== id));
@@ -49,6 +51,24 @@ function BlogList() {
 
   return (
     <div>
+      <div className="flex justify-center mb-15">
+        <select
+          className="select select-primary"
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+            setPage(1); // Reset to first page when category changes
+          }}
+        >
+          <option value="">All Categories</option>
+          {Categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div className="flex flex-wrap gap-x-4 gap-y-12 justify-center">
         {loading && (
           <div
@@ -60,7 +80,10 @@ function BlogList() {
         )}
         {error && <AlertError message={error} styles="w-full" />}
         {!loading && !error && postsData.length === 0 && (
-          <div className="text-gray-500 text-center">No posts available</div>
+          <NoPostYet
+            title={"No Posts Yet"}
+            message={"Create your first post to see it here!"}
+          />
         )}
         {!loading &&
           !error &&
