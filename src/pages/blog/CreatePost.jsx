@@ -66,7 +66,7 @@ export default function CreatePost({ mode = "create" }) {
         );
         resetFormData();
         setIsPreview(false);
-        navigate(`/`);
+        navigate(`/post/${response.data.id}`);
       } else {
         throw new Error("Must be logged in to create a blog post.");
       }
