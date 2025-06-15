@@ -12,6 +12,7 @@ import EditPostBtn from "../../components/Blog/EditPostBtn";
 import { toast } from "react-toastify";
 import apiProtected from "../../api/apiProtected";
 import LikePostViewBtn from "../../components/Blog/LikePostViewBtn";
+import ShareBtn from "../../components/Blog/ShareBtn";
 
 function PostView() {
   const navigate = useNavigate();
@@ -249,29 +250,7 @@ function PostView() {
                       likesCount={post.likes.length}
                     />
 
-                    <a
-                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                        `${window.location.origin}/post/${post.id}`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105"
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
-                        />
-                      </svg>
-                      <span>Share</span>
-                    </a>
+                    <ShareBtn postId={postId} />
                   </div>
                 </div>
               </div>
