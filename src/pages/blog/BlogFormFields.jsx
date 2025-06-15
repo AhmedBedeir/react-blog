@@ -183,7 +183,6 @@ export function BlogFormFields({
           name="content"
           value={formData.content}
           onChange={(value) => {
-            console.log(value);
             onInputChange({ target: { name: "content", value } });
           }}
           textareaProps={{

@@ -79,7 +79,6 @@ function PostView() {
     const updatedLikes = isLiked
       ? likes.filter((like) => like !== userData.id)
       : [...likes, userData.id];
-    console.log(updatedLikes);
     const updatedPost = {
       ...post,
       likes: updatedLikes,

@@ -7,7 +7,7 @@ import { Categories } from "../../constants";
 import NoPostYet from "./NoPostYet";
 import TextTitle from "../TextTitle";
 
-const POSTS_PER_PAGE = 3; // Change as needed
+const POSTS_PER_PAGE = 6; // Change as needed
 
 function BlogList() {
   const [postsData, setPostsData] = useState([]);
@@ -29,7 +29,6 @@ function BlogList() {
           { signal: controller.signal }
         );
         setPostsData(response.data);
-        console.log(response);
         // For json-server, total count is in x-total-count header
         setTotalPosts(Number(response.headers["x-total-count"] || 0));
       } catch (err) {
@@ -71,7 +70,7 @@ function BlogList() {
         </select>
       </div>
 
-      <div className="flex flex-wrap gap-x-4 gap-y-12 justify-center">
+      <div className="flex flex-wrap gap-x-4 gap-y-12 justify-center min-h-[300px]">
         {loading && (
           <div
             className="flex items-center justify-center w-full h-full"
