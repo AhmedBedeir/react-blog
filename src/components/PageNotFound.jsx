@@ -1,19 +1,26 @@
-import React from "react";
+import notFound from "../assets/images/notFound.png";
 import { useNavigate } from "react-router";
-function PageNotFound() {
+function PageNotFound({ title, message, action = "/", actionText }) {
   const navigate = useNavigate();
   return (
     <div className="flex items-center justify-center ">
       <div className="text-center">
-        <h1 className="text-6xl font-bold text-error">404</h1>
-        <p className="mt-4 text-xl text-gray-700">Page Not Found</p>
+        {/* <h1 className="text-6xl font-bold text-error">404</h1> */}
+        <div className="avatar">
+          <div className="w-52 ">
+            <img src={notFound} />
+          </div>
+        </div>
+        <p className="mt-4 text-xl text-gray-700">
+          {title || "Page Not Found!"}
+        </p>
         <p className="mt-2 text-gray-500">
-          The page you are looking for does not exist.
+          {message || "OOPS! The page you are looking for does not exist."}
         </p>
         <button
-          className="cursor-pointer bg-card mt-4 text-center w-48 rounded-2xl h-14 relative text-xl font-semibold group"
+          className="cursor-pointer bg-card shadow-md mt-4 text-center w-48 rounded-2xl h-14 relative text-xl font-semibold group"
           type="button"
-          onClick={() => navigate("/", { replace: true })}
+          onClick={() => navigate(action, { replace: true })}
         >
           <div className="bg-info rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
             <svg
@@ -32,7 +39,7 @@ function PageNotFound() {
               ></path>
             </svg>
           </div>
-          <p className="translate-x-2">To Home</p>
+          <p className="translate-x-2">{actionText || "To Home"}</p>
         </button>
       </div>
     </div>
