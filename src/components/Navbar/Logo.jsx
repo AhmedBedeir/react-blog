@@ -9,7 +9,7 @@ function Logo() {
             className="w-10 h-10 bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-400
  rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-200 shadow-lg"
           >
-            <span className="text-white font-bold text-lg">T</span>
+            <span className="text-white font-bold text-lg">B</span>
           </div>
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
         </div>
@@ -19,9 +19,11 @@ function Logo() {
 
  bg-clip-text text-transparent"
           >
-            ThinkFlow
+            ByteWave
           </p>
-          <div className="text-xs text-gray-500">Let Your Thoughts Flow</div>
+          <div className="text-xs text-gray-500">
+            Riding the Wave of Technology
+          </div>
         </div>
       </Link>
     </>

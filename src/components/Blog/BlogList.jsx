@@ -5,6 +5,7 @@ import { handleResponseError } from "../../constants";
 import AlertError from "../AlertError";
 import { Categories } from "../../constants";
 import NoPostYet from "./NoPostYet";
+import TextTitle from "../TextTitle";
 
 const POSTS_PER_PAGE = 3; // Change as needed
 
@@ -50,7 +51,8 @@ function BlogList() {
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
 
   return (
-    <div>
+    <div className="mt-18">
+      <TextTitle title="Blog Posts" styles="text-center mb-10" />
       <div className="flex justify-center mb-15">
         <select
           className="select select-primary"

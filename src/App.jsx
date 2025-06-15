@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import CreatePost from "./pages/blog/CreatePost";
 import ProtectPostsCrud from "./utils/ProtectPostsCrud";
 import PostView from "./pages/blog/PostView";
+import Footer from "./components/Footer";
 
 function App() {
   console.log("App component rendered");
@@ -57,6 +58,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

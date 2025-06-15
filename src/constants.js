@@ -41,10 +41,31 @@ const handleResponseError = (error) => {
     return "An unexpected error occurred.";
   }
 };
+const testimonials = [
+  {
+    quote:
+      "This blog has completely changed how I approach my daily routine. The articles are insightful and practical.",
+    author: "Sarah Johnson",
+    role: "Regular Reader",
+  },
+  {
+    quote:
+      "I've learned so much from the technical deep dives. The explanations are clear even for beginners like me.",
+    author: "Michael Chen",
+    role: "Developer",
+  },
+  {
+    quote:
+      "The community around this blog is amazing. The discussions add so much value to the already great content.",
+    author: "Emma Davis",
+    role: "Community Member",
+  },
+];
 export {
   containerStyle,
   badgeStyles,
   handleResponseError,
   Categories,
   estimateReadTime,
+  testimonials,
 };
