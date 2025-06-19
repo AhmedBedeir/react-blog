@@ -10,9 +10,14 @@ import CreatePost from "./pages/blog/CreatePost";
 import ProtectPostsCrud from "./utils/ProtectPostsCrud";
 import PostView from "./pages/blog/PostView";
 import Footer from "./components/Footer";
-
+import { useLocation } from "react-router";
+import { useEffect } from "react";
 function App() {
-  console.log("App component rendered");
+  const location = useLocation();
+  useEffect(() => {
+    // Scroll to top on route change
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <div className="transition-colors duration-200">
       <ToastContainer position="top-center" />

@@ -19,6 +19,7 @@ function BlogCard({
   postImg = blogImg,
   likes: initialLikes,
   onDelete,
+  category = "Other",
 }) {
   const navigate = useNavigate();
   const { userData, isAuthenticated } = useContext(AuthContext);
@@ -53,6 +54,9 @@ function BlogCard({
 
   return (
     <div className="relative flex w-100 flex-col rounded-xl bg-card bg-clip-border  shadow-md">
+      <div className="absolute right-6 top-[-12px] z-10">
+        <span className="badge badge-warning badge-sm">{category}</span>
+      </div>
       {/* blog img */}
       <div className="relative mx-4 -mt-6 h-50 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
         <img
@@ -149,7 +153,7 @@ function BlogCard({
             />
           </svg>
         </button>
-        <div>
+        <div className="flex items-center">
           <button
             className={`btn  ${isLiked ? "" : "btn-soft"} btn-info btn-sm ml-2`}
             onClick={toggleLike}

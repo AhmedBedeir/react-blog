@@ -98,7 +98,7 @@ const Navbar = () => {
 
           {/* Mobile controls (menu button and toggle theme button)*/}
 
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center gap-1">
             {/* Mobile Theme Toggle */}
             <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
 

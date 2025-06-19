@@ -21,7 +21,7 @@ function Logo() {
           >
             ByteWave
           </p>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs slogan text-gray-500">
             Riding the Wave of Technology
           </div>
         </div>

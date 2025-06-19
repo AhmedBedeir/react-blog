@@ -100,6 +100,8 @@ function BlogList() {
               likes={post.likes}
               id={post.id}
               onDelete={handleDelete}
+              category={post.category}
+              readTime={post.readTime}
             />
           ))}
       </div>

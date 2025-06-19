@@ -26,7 +26,7 @@
   @apply fill-indigo-300 dark:fill-indigo-900;
 }
 .text-secondary-content {
-  @apply text-indigo-600 dark:text-indigo-400
+  @apply text-indigo-600 dark:text-indigo-400;
 }
 .w-md-editor,
 .w-md-editor-toolbar {
@@ -62,4 +62,11 @@
 .wmde-markdown h6 {
   border: none !important;
   margin: 10px 0 !important;
+}
+
+/* need screen <= 340px */
+@media (max-width: 370px) {
+  .slogan {
+    font-size: 8px ;
+  }
 }
