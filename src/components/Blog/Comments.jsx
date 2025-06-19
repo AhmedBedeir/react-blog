@@ -29,7 +29,7 @@ function Comments({ styles }) {
     const fetchComments = async () => {
       try {
         const res = await api.get(
-          `/comments?postId=2&_expand=user&_sort=createdAt&_order=desc`,
+          `/comments?postId=${postId}&_expand=user&_sort=createdAt&_order=desc`,
           {
             signal: abortController.signal,
           }
@@ -127,7 +127,7 @@ function Comments({ styles }) {
       )}
       {error.fetching && <p className="text-red-500">{error.fetching}</p>}
       {error.add && <p className="text-red-500">{error.add}</p>}
-      {comments.length === 0 && !loading && (
+      {comments.length === 0 && !loading.fetching && (
         <p className="text-gray-500">
           No comments yet. Be the first to comment!
         </p>
