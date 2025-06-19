@@ -12,6 +12,7 @@ import PostView from "./pages/blog/PostView";
 import Footer from "./components/Footer";
 import { useLocation } from "react-router";
 import { useEffect } from "react";
+import BlogList from "./components/Blog/BlogList";
 function App() {
   const location = useLocation();
   useEffect(() => {
@@ -58,6 +59,7 @@ function App() {
             }
           />
           <Route path="/post/:postId" element={<PostView />} />
+          <Route path="/posts" element={<BlogList />} />
 
           {/* not found route */}
           <Route path="*" element={<PageNotFound />} />

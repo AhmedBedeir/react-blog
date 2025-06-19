@@ -55,7 +55,7 @@ const Hero = () => {
           {/* CTA with tech icons */}
           <div className="mt-10 flex flex-col md:flex-row md:gap-y-0 gap-y-4 items-center gap-x-6">
             <Link
-              to="/"
+              to="/posts"
               className="group relative flex items-center gap-2 rounded-md bg-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
             >
               Explore Articles
