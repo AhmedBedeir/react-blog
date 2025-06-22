@@ -1,13 +1,19 @@
 import avatarImg from "../../assets/images/avatar2.png";
 
-function AuthorInfo({ name }) {
+function AuthorInfo({
+  name,
+  avatarStyle = "h-12 w-12",
+  verifySize = "size-5",
+  nameStyle = "text-sm",
+  titleStyle = "text-xs",
+}) {
   return (
     <div className="flex items-center">
-      <div className="relative h-12 w-12 mx-auto rounded-full shadow-md">
+      <div className="relative  mx-auto rounded-full shadow-md">
         <img
           src={avatarImg}
           alt="Author"
-          className="h-12 w-12 rounded-full border-2 border-white shadow-md object-cover"
+          className={`${avatarStyle} rounded-full border-2 border-white shadow-md object-cover`}
         />
         <div className="absolute bottom-0 right-0 text-blue-500 bg-card rounded-full shadow-md">
           <svg
@@ -16,7 +22,7 @@ function AuthorInfo({ name }) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-5"
+            className={`${verifySize}`}
           >
             <path
               strokeLinecap="round"
@@ -26,10 +32,12 @@ function AuthorInfo({ name }) {
           </svg>
         </div>
       </div>
-      <span className="ml-3 font-sans text-sm font-semibold text-blue-gray-900 antialiased">
+      <span
+        className={`${nameStyle} ml-3 font-sans font-semibold text-blue-gray-900 antialiased`}
+      >
         {name}
         <br />
-        <span className="text-xs font-normal text-blue-gray-600">
+        <span className={`${titleStyle} font-normal text-blue-gray-600`}>
           Software Engineer
         </span>
       </span>
