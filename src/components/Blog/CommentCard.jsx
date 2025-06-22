@@ -2,6 +2,7 @@ import { useState } from "react";
 import AuthorInfo from "./AuthorInfo";
 import apiProtected from "../../api/apiProtected";
 import { toast } from "react-toastify";
+import { timeAgo } from "../../constants";
 
 function CommentCard({ comment, isAuthenticated, userData, handleDelete }) {
   const [loadingDelete, setLoadingDelete] = useState(false);
@@ -22,22 +23,25 @@ function CommentCard({ comment, isAuthenticated, userData, handleDelete }) {
   }
 
   return (
-    <div className="mb-4 border-b border-base-300/70 pb-4">
-      <div className="comment-header flex items-center mb-6 justify-between">
-        <AuthorInfo name={comment.user.fullName} />
-        <span className="text-xs font-normal text-gray-500">
-          {new Date(comment.createdAt).toLocaleDateString()}
-        </span>
-      </div>
-      <div className="comment-content ml-4">
-        <p className="text-base-content/70 ">{comment.content}</p>
-      </div>
-      {isAuthenticated() && userData.id === comment.userId && (
-        <div className="flex justify-end">
+    <div className="bg-base-100/20 border border-primary/10 rounded-xl shadow-sm p-5 transition hover:shadow-lg">
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <AuthorInfo
+            name={comment.user.fullName}
+            avatarStyle="h-10 w-10"
+            verifySize="h-4 w-4"
+            nameStyle="text-sm font-semibold"
+          />
+          <span className="text-xs text-gray-400 ml-2">
+            {timeAgo(comment.createdAt)}
+          </span>
+        </div>
+        {isAuthenticated() && userData.id === comment.userId && (
           <button
-            className="btn btn-sm btn-error mt-2"
+            className="btn btn-xs btn-error hover:scale-105 transition"
             onClick={() => handleDeleteComment(comment.id)}
             disabled={loadingDelete}
+            title="Delete comment"
           >
             {loadingDelete ? (
               <span className="loading loading-spinner loading-xs"></span>
@@ -45,8 +49,11 @@ function CommentCard({ comment, isAuthenticated, userData, handleDelete }) {
               "Delete"
             )}
           </button>
-        </div>
-      )}
+        )}
+      </div>
+      <div className="ml-2 pl-2 border-l-2 border-primary/20">
+        <p className="text-base-content/80 text-sm">{comment.content}</p>
+      </div>
     </div>
   );
 }
