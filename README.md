@@ -21,6 +21,8 @@ A modern application built with React, featuring user authentication, markdown e
 
 ### Social Features
 - **Like/Unlike System** - Interactive post engagement
+- **Commenting System** - Users can comment on posts
+- **User Profiles** - View and manage user profiles
 
 ### Search & Discovery
 - **Post Search** - Full-text search across all posts
@@ -81,6 +83,11 @@ The application integrates with a RESTful API with the following endpoints:
 - `POST /posts` - Create new post
 - `PUT /posts/:id` - Update post
 - `DELETE /posts/:id` - Delete post
+
+### Comments
+- `GET /comments?postId=:id` - Fetch comments for a post
+- `POST /comments` - Add comment to a post
+- `DELETE /comments/:id` - Delete comment
 
 
 ## 🎨 Styling
