@@ -55,13 +55,18 @@ function BlogList({ url = "", title = "Blog Posts" }) {
     <div className="mt-18">
       <TextTitle title={title} styles="text-center mb-10" />
       <div className="flex justify-center mb-15">
+        <label htmlFor="category-select" className="sr-only">
+          Filter by category
+        </label>
         <select
+          id="category-select"
           className="select select-primary"
           value={category}
           onChange={(e) => {
             setCategory(e.target.value);
             setPage(1); // Reset to first page when category changes
           }}
+          aria-label="Filter by category"
         >
           <option value="">All Categories</option>
           {Categories.map((cat) => (

@@ -67,6 +67,7 @@ function BlogCard({
             e.target.onerror = null;
             e.target.src = blogImg;
           }}
+          loading="lazy"
         />
       </div>
       {/* author blog */}

@@ -121,6 +121,8 @@ const Hero = () => {
           <img
             src={defaultImg}
             alt="Tech illustration"
+            width={500}
+            height={400}
             className="w-full sm:max-w-sm md:max-w-md lg:max-w-full rounded-lg shadow-lg object-cover"
           />
         </div>

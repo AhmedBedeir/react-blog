@@ -1,7 +1,7 @@
 import { containerStyle } from "../constants";
 const Footer = () => {
   return (
-    <footer className="bg-card pt-16 pb-8 mt-18">
+    <footer className="bg-card pt-16 pb-8 mt-18" role="contentinfo">
       <div className={`${containerStyle}`}>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Column 1: About */}
@@ -11,8 +11,8 @@ const Footer = () => {
               A modern blog platform sharing insights, tutorials, and stories
               about technology, design, and more.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-primary">
+            <div className="flex space-x-4" aria-label="Social media links">
+              <a href="#" className="text-primary" aria-label="Twitter">
                 <svg
                   className="w-6 h-6"
                   fill="currentColor"
@@ -21,7 +21,7 @@ const Footer = () => {
                   <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                 </svg>
               </a>
-              <a href="#" className="text-primary">
+              <a href="#" className="text-primary" aria-label="Instagram">
                 <svg
                   className="w-6 h-6"
                   fill="currentColor"
@@ -33,7 +33,9 @@ const Footer = () => {
               <a
                 href="https://www.linkedin.com/in/ahmed-bedeir/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-primary"
+                aria-label="LinkedIn (opens in new tab)"
               >
                 <svg
                   className="w-6 h-6"
@@ -47,63 +49,63 @@ const Footer = () => {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div>
+          <nav aria-label="Footer navigation">
             <h3 className="text-xl font-bold text-primary mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Blog Posts
                 </a>
               </li>
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Categories
                 </a>
               </li>
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Contact
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Column 3: Categories */}
           <div>
             <h3 className="text-xl font-bold text-primary mb-4">Categories</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Technology
                 </a>
               </li>
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Design
                 </a>
               </li>
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Development
                 </a>
               </li>
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Business
                 </a>
               </li>
               <li>
-                <a href="#" className="text-content  transition-colors">
+                <a href="#" className="text-content transition-colors">
                   Lifestyle
                 </a>
               </li>
@@ -116,13 +118,19 @@ const Footer = () => {
             <p className="text-content mb-4">
               Subscribe to our newsletter for the latest updates and articles.
             </p>
-            <div className="flex">
+            <form className="flex" aria-label="Newsletter subscription">
               <input
                 type="email"
                 placeholder="Your email"
                 className="input input-primary"
+                aria-label="Email address"
+                required
               />
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-r-lg transition-colors">
+              <button
+                type="submit"
+                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-r-lg transition-colors"
+                aria-label="Subscribe to newsletter"
+              >
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -137,7 +145,7 @@ const Footer = () => {
                   />
                 </svg>
               </button>
-            </div>
+            </form>
           </div>
         </div>
 
@@ -149,7 +157,9 @@ const Footer = () => {
               <a
                 href="https://www.linkedin.com/in/ahmed-bedeir/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-primary font-bold"
+                aria-label="Bedeir LinkedIn (opens in new tab)"
               >
                 {" "}
                 Bedeir
@@ -157,23 +167,25 @@ const Footer = () => {
               . All rights reserved.
             </p>
           </div>
-          <div className="flex space-x-6">
-            <a href="#" className="text-content  transition-colors">
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-content hover:text-white transition-colors"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="#"
-              className="text-content hover:text-white transition-colors"
-            >
-              Cookies
-            </a>
-          </div>
+          <nav aria-label="Footer policies">
+            <div className="flex space-x-6">
+              <a href="#" className="text-content transition-colors">
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="text-content hover:text-white transition-colors"
+              >
+                Terms of Service
+              </a>
+              <a
+                href="#"
+                className="text-content hover:text-white transition-colors"
+              >
+                Cookies
+              </a>
+            </div>
+          </nav>
         </div>
       </div>
     </footer>
