@@ -2,6 +2,9 @@
 
 A modern application built with React, featuring user authentication, markdown editing, and comprehensive post management capabilities.
 
+
+![react-blot](https://github.com/user-attachments/assets/ba107c0d-ba4c-487c-93f3-c9f588c08dd8)
+
 ## 🚀 Features
 
 ### User Authentication
