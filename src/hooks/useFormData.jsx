@@ -49,7 +49,7 @@ export function useFormData(postId, mode) {
     try {
       // Replace with your actual upload endpoint
       const response = await api.post(
-        "https://api.imgbb.com/1/upload?key=b8df38de2353555c69e09f5c93b5378f",
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_KEY}`,
         newFormData,
         {
           headers: {
