@@ -14,6 +14,7 @@ const PostView = React.lazy(() => import("./pages/blog/PostView"));
 const Footer = React.lazy(() => import("./components/Footer"));
 const BlogList = React.lazy(() => import("./components/Blog/BlogList"));
 const UserProfile = React.lazy(() => import("./pages/UserProfile"));
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   const location = useLocation();
@@ -83,6 +84,7 @@ function App() {
         </div>
         <Footer />
       </Suspense>
+      <SpeedInsights />
     </div>
   );
 }
