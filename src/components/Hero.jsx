@@ -1,6 +1,10 @@
 import { Link } from "react-router";
-import defaultImg from "../assets/images/defaultBlogImg.jpg";
+import defaultImg from "../assets/images/defaultBlogImg.webp";
+import React, { useState } from "react";
+
 const Hero = () => {
+  const [imgLoading, setImgLoading] = useState(true);
+
   return (
     <section className="relative isolate overflow-hidden mt-35">
       {/* Futuristic grid background */}
@@ -46,7 +50,7 @@ const Hero = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-6 text-lg leading-8 text-content">
+          <p className="mt-6 text-base sm:text-lg md:text-xl leading-8 text-content">
             Cutting-edge tutorials, in-depth analysis, and the latest trends in
             AI, Web Development, and Cybersecurity. Stay ahead of the curve with
             our expert insights.
@@ -55,7 +59,7 @@ const Hero = () => {
           {/* CTA with tech icons */}
           <div className="mt-10 flex flex-col md:flex-row md:gap-y-0 gap-y-4 items-center gap-x-6">
             <Link
-              to="/"
+              to="/posts"
               className="group relative flex items-center gap-2 rounded-md bg-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
             >
               Explore Articles
@@ -117,11 +121,20 @@ const Hero = () => {
         </div>
 
         {/* Tech illustration placeholder - replace with your own */}
-        <div className="mt-12 flex justify-center lg:mt-0 lg:flex-shrink-0 lg:justify-end lg:items-center lg:w-[420px] xl:w-[500px]">
+        <div className="mt-12 flex justify-center lg:mt-0 lg:flex-shrink-0 lg:justify-end lg:items-center lg:w-[420px] xl:w-[500px] relative">
+          {imgLoading && (
+            <div className="absolute inset-0 flex items-center justify-center z-10 rounded-lg">
+              <div className="skeleton w-full h-full"></div>
+            </div>
+          )}
           <img
             src={defaultImg}
             alt="Tech illustration"
-            className="w-full sm:max-w-sm md:max-w-md lg:max-w-full rounded-lg shadow-lg object-cover"
+            width={500}
+            height={400}
+            className="w-full sm:max-w-sm md:max-w-md lg:max-w-full rounded-lg shadow-lg object-cover fade-in"
+            onLoad={() => setImgLoading(false)}
+            style={imgLoading ? { visibility: "hidden" } : {}}
           />
         </div>
       </div>

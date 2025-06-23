@@ -5,10 +5,56 @@
       const theme = localStorage.getItem("theme") || "light";
       document.documentElement.setAttribute("data-theme", theme);
     </script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QF0DF18SV7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QF0DF18SV7");
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog App</title>
+    <!-- Primary Meta Tags -->
+    <title>ByteWave</title>
+    <meta name="title" content="ByteWave" />
+    <meta
+      name="description"
+      content="ByteWave Tech Blog – Dive into the latest in web development, AI, software engineering, and tech trends—tutorials, tips, and insights for developers and tech enthusiasts."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bytewave-nine.vercel.app/" />
+    <meta property="og:title" content="ByteWave" />
+    <meta
+      property="og:description"
+      content="ByteWave Tech Blog – Dive into the latest in web development, AI, software engineering, and tech trends—tutorials, tips, and insights for developers and tech enthusiasts."
+    />
+    <meta
+      property="og:image"
+      content="https://bytewave-nine.vercel.app/preview.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://bytewave-nine.vercel.app/" />
+    <meta property="twitter:title" content="ByteWave" />
+    <meta
+      property="twitter:description"
+      content="ByteWave Tech Blog – Dive into the latest in web development, AI, software engineering, and tech trends—tutorials, tips, and insights for developers and tech enthusiasts."
+    />
+    <meta
+      property="twitter:image"
+      content="https://bytewave-nine.vercel.app/preview.jpg"
+    />
   </head>
   <body>
     <div id="root"></div>

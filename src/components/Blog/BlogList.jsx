@@ -9,7 +9,7 @@ import TextTitle from "../TextTitle";
 
 const POSTS_PER_PAGE = 6; // Change as needed
 
-function BlogList() {
+function BlogList({ url = "", title = "Blog Posts" }) {
   const [postsData, setPostsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,7 +23,9 @@ function BlogList() {
     const getPosts = async () => {
       try {
         const response = await api.get(
-          `/posts?_page=${page}&_limit=${POSTS_PER_PAGE}${
+          `/posts?${
+            url ? url + "&" : ""
+          }_page=${page}&_limit=${POSTS_PER_PAGE}${
             category ? `&category=${encodeURIComponent(category)}` : ""
           }`,
           { signal: controller.signal }
@@ -41,7 +43,7 @@ function BlogList() {
     return () => {
       controller.abort();
     };
-  }, [page, category]);
+  }, [page, category, url]);
 
   const handleDelete = (id) => {
     setPostsData((prevPosts) => prevPosts.filter((post) => post.id !== id));
@@ -51,15 +53,20 @@ function BlogList() {
 
   return (
     <div className="mt-18">
-      <TextTitle title="Blog Posts" styles="text-center mb-10" />
+      <TextTitle title={title} styles="text-center mb-10" />
       <div className="flex justify-center mb-15">
+        <label htmlFor="category-select" className="sr-only">
+          Filter by category
+        </label>
         <select
+          id="category-select"
           className="select select-primary"
           value={category}
           onChange={(e) => {
             setCategory(e.target.value);
             setPage(1); // Reset to first page when category changes
           }}
+          aria-label="Filter by category"
         >
           <option value="">All Categories</option>
           {Categories.map((cat) => (
@@ -100,6 +107,8 @@ function BlogList() {
               likes={post.likes}
               id={post.id}
               onDelete={handleDelete}
+              category={post.category}
+              readTime={post.readTime}
             />
           ))}
       </div>
