@@ -92,6 +92,15 @@ The application integrates with a RESTful API with the following endpoints:
 - `POST /comments` - Add comment to a post
 - `DELETE /comments/:id` - Delete comment
 
+### 📁 .env.example
+
+Create a `.env` file in the root directory with the following:
+
+```env
+VITE_IMGBB_KEY=your_imgbb_api_key_here
+```
+Get your key from [ImgBB](https://imgbb.com/).
+
 
 ## 🎨 Styling
 
@@ -101,3 +110,7 @@ The application uses a modern design system built with:
 - **DaisyUI** for pre-built component themes
 - **Responsive design** patterns
 - **Dark/light mode** support
+
+
+## 🙌 Get Involved
+> Love the project? Show your support by starring ⭐ the repo. Do you have an idea or want to make a change? Fork it, make changes, and submit a PR 🤝
