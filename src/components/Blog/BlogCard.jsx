@@ -60,7 +60,7 @@ function BlogCard({
       {/* blog img */}
       <div className="relative mx-4 -mt-6 h-50 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
         <img
-          src={postImg}
+          src={postImg.length ? postImg : blogImg}
           alt="Blog cover"
           className="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-120"
           onError={(e) => {

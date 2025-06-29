@@ -14,6 +14,7 @@ import apiProtected from "../../api/apiProtected";
 import LikePostViewBtn from "../../components/Blog/LikePostViewBtn";
 import ShareBtn from "../../components/Blog/ShareBtn";
 import Comments from "../../components/Blog/Comments";
+import blogImg from "../../assets/images/defaultBlogImg.jpg";
 
 function PostView() {
   const navigate = useNavigate();
@@ -128,10 +129,14 @@ function PostView() {
               <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                 <img
-                  src={post.image}
+                  src={post.image.length ? post.image : blogImg}
                   alt={post.title}
                   className="w-full h-96 object-cover"
                   loading="lazy"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = blogImg;
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
 
@@ -261,9 +266,8 @@ function PostView() {
           )}
         </div>
       </div>
-      
-        <Comments styles="max-w-4xl mx-auto mt-10 p-8 rounded-3xl shadow-md bg-card" />
-      
+
+      <Comments styles="max-w-4xl mx-auto mt-10 p-8 rounded-3xl shadow-md bg-card" />
     </>
   );
 }
